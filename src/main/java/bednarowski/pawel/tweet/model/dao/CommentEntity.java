@@ -3,20 +3,18 @@ package bednarowski.pawel.tweet.model.dao;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
-public class UserEntity {
+public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    @ManyToOne
+    private UserEntity owner;
 
-    private String password;
+    private String content;
 
-    @OneToMany
-    private List<CommentEntity> comments;
 }
