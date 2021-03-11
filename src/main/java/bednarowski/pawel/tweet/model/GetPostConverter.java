@@ -2,7 +2,9 @@ package bednarowski.pawel.tweet.model;
 
 import bednarowski.pawel.tweet.model.dao.PostEntity;
 import bednarowski.pawel.tweet.model.dto.GetPostResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GetPostConverter implements Convertable<Void, PostEntity, GetPostResponse> {
 
     @Override
