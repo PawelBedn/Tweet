@@ -23,13 +23,13 @@ public class PostController {
     private final UpdatePostService updatePostService;
     private final DeletePostService deletePostService;
 
-    @PostMapping(path = "/posts")
+    @PostMapping(path = "/api/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public CreatePostResponse createPost(@Valid @RequestBody CreatePostRequest request) {
         return createPostService.createPost(request);
     }
 
-    @GetMapping(path = "post/{postId}")
+    @GetMapping(path = "/api/post/{postId}")
     public GetPostResponse getPostById(@PathVariable("postId") Long id) {
         return getPostService.getPostById(id);
     }
@@ -38,13 +38,13 @@ public class PostController {
         return getPostService.getAllPosts();
     }
 
-    @PutMapping(path = "posts/{postId}")
+    @PutMapping(path = "/api/posts/{postId}")
     @ResponseStatus(HttpStatus.OK)
     public UpdatePostResponse updatePost(@Valid @RequestBody UpdatePostRequest request, @PathVariable("postId") Long id) {
         return updatePostService.update(request, id);
     }
 
-    @DeleteMapping(path = "/posts/{postId")
+    @DeleteMapping(path = "/api/posts/{postId")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePost(@PathVariable("postId") Long id) {
         deletePostService.delete(id);

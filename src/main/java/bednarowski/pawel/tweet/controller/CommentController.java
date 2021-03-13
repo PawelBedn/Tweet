@@ -12,7 +12,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping("/comment")
+    @PostMapping("/api/comment")
     public void addComment(CreateCommentRequest request) {
         commentService.addComment(request);
     }

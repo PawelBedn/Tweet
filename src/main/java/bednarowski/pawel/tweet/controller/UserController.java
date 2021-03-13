@@ -18,12 +18,12 @@ public class UserController {
     private final CreateUserService createUserService;
     private final GetUserService getUserService;
 
-    @PostMapping(path = "/users")
+    @PostMapping(path = "/pi/users")
     public UserInfoResponse createUser(@Valid @RequestBody RegisterUserRequest request) {
         return createUserService.saveUser(request);
     }
 
-    @GetMapping(path = "/users/{username}")
+    @GetMapping(path = "/api/users/{username}")
     public UserInfoResponse getUserByUsername(@PathVariable("username") String username) {
         return getUserService.getUserByUsername(username);
     }
