@@ -16,6 +16,6 @@ public class RegistrationController {
 
     @PostMapping
     private String register(RegisterUserRequest request) {
-        return RegistrationService.register(request);
+        return registrationService.register(request);
     }
 }

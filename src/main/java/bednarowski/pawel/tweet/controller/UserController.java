@@ -18,7 +18,7 @@ public class UserController {
     private final CreateUserService createUserService;
     private final GetUserService getUserService;
 
-    @PostMapping(path = "/pi/users")
+    @PostMapping(path = "/api/users")
     public UserInfoResponse createUser(@Valid @RequestBody RegisterUserRequest request) {
         return createUserService.saveUser(request);
     }
