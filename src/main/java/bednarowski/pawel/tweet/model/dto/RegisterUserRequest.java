@@ -7,17 +7,12 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 @Getter
-@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
 @ToString
 public class RegisterUserRequest {
 
-
     private final String username;
-
-
     private final String email;
-
     private final String password;
 }

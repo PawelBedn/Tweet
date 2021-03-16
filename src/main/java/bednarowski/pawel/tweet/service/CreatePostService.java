@@ -1,5 +1,6 @@
 package bednarowski.pawel.tweet.service;
 
+import bednarowski.pawel.tweet.controller.UploadController;
 import bednarowski.pawel.tweet.model.CreatePostConverter;
 import bednarowski.pawel.tweet.model.dao.PostEntity;
 import bednarowski.pawel.tweet.model.dto.CreatePostRequest;

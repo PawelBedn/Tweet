@@ -48,8 +48,8 @@ public class CreateUserService implements UserDetailsService {
             throw new IllegalStateException("email already taken");
         }
 
-      //  String encodedPassword = bCryptPasswordEncoder.encode(userEntity.getPassword());
-      //  userEntity.setPassword(encodedPassword);
+        String encodedPassword = bCryptPasswordEncoder.encode(userEntity.getPassword());
+        userEntity.setPassword(encodedPassword);
 
         userRepository.save(userEntity);
 
