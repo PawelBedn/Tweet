@@ -1,5 +1,6 @@
 package bednarowski.pawel.tweet.service;
 
+import bednarowski.pawel.tweet.model.dao.ConfirmationToken;
 import bednarowski.pawel.tweet.model.dao.UserEntity;
 import bednarowski.pawel.tweet.model.dto.RegisterUserRequest;
 import bednarowski.pawel.tweet.model.dto.UserInfoResponse;
@@ -11,6 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class CreateUserService implements UserDetailsService {
@@ -18,6 +22,7 @@ public class CreateUserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final static String USER_NOT_FOUND = "user with %s email not found";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
 
     public UserInfoResponse saveUser(RegisterUserRequest request) {
         UserEntity userEntity = new UserEntity();
@@ -53,7 +58,20 @@ public class CreateUserService implements UserDetailsService {
 
         userRepository.save(userEntity);
 
-        return "it works";
+        String token = UUID.randomUUID().toString();
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15), userEntity);
+
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+        // TODO: SEND EMAIL
+
+        return token;
+    }
+
+    public int enableUser(String email) {
+        return userRepository.enableAppUser(email);
     }
 
 }
