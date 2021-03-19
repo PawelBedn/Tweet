@@ -6,6 +6,7 @@ import bednarowski.pawel.tweet.model.dto.GetPostResponse;
 import bednarowski.pawel.tweet.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class GetPostService {
         List<PostEntity> postEntities = postRepository.findAll();
         for (PostEntity post : postEntities) {
             GetPostResponse postResponse = getPostConverter.toDto(post);
-            posts.add(postResponse);
+            posts.add(postResponse);;
         }
         return posts;
     }
